@@ -11,6 +11,9 @@ namespace Esteti.Application.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<Customer> Customers { get; set; }
+        DbSet<Staff> Staff { get; set; }
+        DbSet<Service> Services { get; set; }
+        DbSet<Booking> Bookings { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

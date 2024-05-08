@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Esteti.Domain.Entities
 {
-    public class Services : DomainEntity
+    public class Service : DomainEntity
     {
         public required string Name { get; set; }
         public string? Description { get; set; }

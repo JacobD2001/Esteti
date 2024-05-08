@@ -17,23 +17,25 @@ namespace Esteti.Infrastructure.Persistence
       
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Staff> Staff { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
 
-        //this is for configurations if we want to add configurations in configuration folder but for now we are using it.
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //this is for configurations if we want to add configurations in configuration folder but for now we are using it.
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(MainDbContext).Assembly);
             modelBuilder.Entity<Staff>()
                 .Property(s => s.Role)
                 .HasConversion<string>();
         }
 
-        //protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
-        //{
-        //    configurationBuilder.Properties<decimal>().HavePrecision(18, 4);
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<decimal>().HavePrecision(10, 2);
 
-        //    base.ConfigureConventions(configurationBuilder);
-        //}
+            base.ConfigureConventions(configurationBuilder);
+        }
 
     }
 }
