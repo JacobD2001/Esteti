@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esteti.Domain", "Esteti.Domain\Esteti.Domain.csproj", "{70BDA96E-4C3A-471E-BD48-57A78F18127D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esteti.Domain", "Esteti.Domain\Esteti.Domain.csproj", "{70BDA96E-4C3A-471E-BD48-57A78F18127D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esteti.Application", "Esteti.Application\Esteti.Application.csproj", "{A507069E-7EF4-4E71-A9C7-D9AC1AA9513B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esteti.Application", "Esteti.Application\Esteti.Application.csproj", "{A507069E-7EF4-4E71-A9C7-D9AC1AA9513B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esteti.Infrastructure", "Esteti.Infrastructure\Esteti.Infrastructure.csproj", "{DD660913-B17E-4442-9243-D4BEBC76EBC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esteti.Infrastructure", "Esteti.Infrastructure\Esteti.Infrastructure.csproj", "{DD660913-B17E-4442-9243-D4BEBC76EBC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esteti.WebApi", "Esteti.WebApi\Esteti.WebApi.csproj", "{F3F7AD7E-CC68-41E0-9F2A-9AAA666F9DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esteti.WebApi", "Esteti.WebApi\Esteti.WebApi.csproj", "{F3F7AD7E-CC68-41E0-9F2A-9AAA666F9DA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esteti.Migrations", "Esteti.Migrations\Esteti.Migrations.csproj", "{60FF5826-ADD7-4B6E-9878-C400EF4D24CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F3F7AD7E-CC68-41E0-9F2A-9AAA666F9DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3F7AD7E-CC68-41E0-9F2A-9AAA666F9DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3F7AD7E-CC68-41E0-9F2A-9AAA666F9DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FF5826-ADD7-4B6E-9878-C400EF4D24CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FF5826-ADD7-4B6E-9878-C400EF4D24CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FF5826-ADD7-4B6E-9878-C400EF4D24CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FF5826-ADD7-4B6E-9878-C400EF4D24CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

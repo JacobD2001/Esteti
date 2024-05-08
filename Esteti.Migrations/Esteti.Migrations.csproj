@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Esteti.Domain\Esteti.Domain.csproj" />
+    <ProjectReference Include="..\Esteti.Infrastructure\Esteti.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

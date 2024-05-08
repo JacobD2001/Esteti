@@ -1,3 +1,4 @@
+using Esteti.Infrastructure.Persistence;
 using Serilog;
 
 namespace Esteti.WebApi
@@ -18,6 +19,11 @@ namespace Esteti.WebApi
 
             var builder = WebApplication.CreateBuilder(args);
 
+            if(builder.Environment.IsDevelopment())
+            {
+                builder.Configuration.AddJsonFile("appsettings.Development.local.json");
+            }
+
             //logging after the host is built
             builder.Host.UseSerilog((context, services, configuration) => configuration
                 .Enrich.WithProperty("Application", APP_NAME)
@@ -28,6 +34,7 @@ namespace Esteti.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
 
             var app = builder.Build();
