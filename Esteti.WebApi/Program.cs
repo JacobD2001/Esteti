@@ -3,6 +3,7 @@ using Esteti.Infrastructure.Persistence;
 using Esteti.WebApi.Middlewares;
 using Serilog;
 using Esteti.Application;
+using Esteti.Infrastructure.Auth;
 
 namespace Esteti.WebApi
 {
@@ -40,6 +41,7 @@ namespace Esteti.WebApi
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
+            builder.Services.AddJwtAuth(builder.Configuration);
 
             builder.Services.AddMediatR(c =>
             {
