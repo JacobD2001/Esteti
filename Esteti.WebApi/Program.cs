@@ -1,3 +1,4 @@
+using Esteti.Application.Logic.Abstractions;
 using Esteti.Infrastructure.Persistence;
 using Serilog;
 
@@ -36,6 +37,11 @@ namespace Esteti.WebApi
 
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
+
+            builder.Services.AddMediatR(c =>
+            {
+                c.RegisterServicesFromAssemblyContaining(typeof(BaseCommandHandler)); 
+            });
 
             var app = builder.Build();
 
