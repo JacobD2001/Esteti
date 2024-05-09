@@ -2,6 +2,7 @@ using Esteti.Application.Logic.Abstractions;
 using Esteti.Infrastructure.Persistence;
 using Esteti.WebApi.Middlewares;
 using Serilog;
+using Esteti.Application;
 
 namespace Esteti.WebApi
 {
@@ -44,6 +45,8 @@ namespace Esteti.WebApi
                 c.RegisterServicesFromAssemblyContaining(typeof(BaseCommandHandler)); 
             });
 
+            builder.Services.AddApplicationServices();
+
             var app = builder.Build();
 
             app.UseExceptionResultMiddleware();
@@ -51,7 +54,6 @@ namespace Esteti.WebApi
             // Configure the HTTP request pipeline.
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
