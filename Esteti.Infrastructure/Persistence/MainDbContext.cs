@@ -19,6 +19,9 @@ namespace Esteti.Infrastructure.Persistence
         public DbSet<Staff> Staff { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<AccountUser> AccountUsers { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

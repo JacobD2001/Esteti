@@ -28,8 +28,8 @@ namespace Esteti.Domain.Entities
         public required DateTime StartTime { get; set; }
         public required DateTime EndTime { get; set; }
         public string? Description { get; set; }
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-        public required DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; private set; } = DateTime.Now;
+        public required DateTime UpdatedAt { get; set; } = DateTime.Now;
 
     }
 }

@@ -14,6 +14,9 @@ namespace Esteti.Application.Interfaces
         DbSet<Staff> Staff { get; set; }
         DbSet<Service> Services { get; set; }
         DbSet<Booking> Bookings { get; set; }
+        DbSet<Account> Accounts { get; set; }
+        DbSet<AccountUser> AccountUsers { get; set; }
+        DbSet<User> Users { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
