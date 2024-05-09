@@ -1,4 +1,5 @@
-﻿using Esteti.Application.Interfaces;
+﻿using EFCoreSecondLevelCacheInterceptor;
+using Esteti.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +11,8 @@ namespace Esteti.Infrastructure.Persistence
         {
             Action<IServiceProvider, DbContextOptionsBuilder> sqlOptions = (serviceProvider, options) => options
                  .UseSqlServer(connectionString, o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery)
-                 .MigrationsAssembly("Esteti.Migrations"));
+                 .MigrationsAssembly("Esteti.Migrations"))
+                 .AddInterceptors(serviceProvider.GetRequiredService<SecondLevelCacheInterceptor>());
 
             services.AddDbContext<IApplicationDbContext, MainDbContext>(sqlOptions);
 

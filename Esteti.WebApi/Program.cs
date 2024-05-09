@@ -37,6 +37,7 @@ namespace Esteti.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
 

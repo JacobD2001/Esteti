@@ -1,4 +1,5 @@
-﻿using Esteti.Application.Exceptions;
+﻿using EFCoreSecondLevelCacheInterceptor;
+using Esteti.Application.Exceptions;
 using Esteti.Application.Interfaces;
 using Esteti.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace Esteti.Application.Services
                     .Where(au => au.UserId == userId.Value)
                     .OrderBy(au => au.Id)
                     .Select(au => (int?)au.AccountId)
+                    .Cacheable()
                     .FirstOrDefaultAsync();
             }
 
