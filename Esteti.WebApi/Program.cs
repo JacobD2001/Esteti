@@ -1,5 +1,6 @@
 using Esteti.Application.Logic.Abstractions;
 using Esteti.Infrastructure.Persistence;
+using Esteti.WebApi.Middlewares;
 using Serilog;
 
 namespace Esteti.WebApi
@@ -44,6 +45,8 @@ namespace Esteti.WebApi
             });
 
             var app = builder.Build();
+
+            app.UseExceptionResultMiddleware();
 
             // Configure the HTTP request pipeline.
 
