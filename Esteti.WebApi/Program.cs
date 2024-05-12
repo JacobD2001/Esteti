@@ -4,6 +4,7 @@ using Esteti.WebApi.Middlewares;
 using Serilog;
 using Esteti.Application;
 using Esteti.Infrastructure.Auth;
+using Esteti.WebApi.Application.Auth;
 
 namespace Esteti.WebApi
 {
@@ -38,10 +39,12 @@ namespace Esteti.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
             builder.Services.AddControllers();
             builder.Services.AddJwtAuth(builder.Configuration);
+            builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
 
             builder.Services.AddMediatR(c =>
             {
