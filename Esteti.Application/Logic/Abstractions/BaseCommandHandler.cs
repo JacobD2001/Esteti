@@ -9,13 +9,13 @@ namespace Esteti.Application.Logic.Abstractions
 {
     public abstract class BaseCommandHandler
     {
-        private readonly ICurrentAccountProvider _currentAccountProvider;
-        private readonly IAuthenticationDataProvider _authenticationDataProvider;
+        protected readonly ICurrentAccountProvider _currentAccountProvider;
+        protected readonly IApplicationDbContext _applicationDbContext;
 
-        protected BaseCommandHandler(ICurrentAccountProvider currentAccountProvider, IAuthenticationDataProvider authenticationDataProvider)
+        public BaseCommandHandler(ICurrentAccountProvider currentAccountProvider, IApplicationDbContext applicationDbContext)
         {
             _currentAccountProvider = currentAccountProvider;
-            _authenticationDataProvider = authenticationDataProvider;
+            _applicationDbContext = applicationDbContext;
         }
     }
 }
