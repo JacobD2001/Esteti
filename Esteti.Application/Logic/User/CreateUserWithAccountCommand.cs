@@ -11,7 +11,7 @@ namespace Esteti.Application.Logic.User
 {
     public static class CreateUserWithAccountCommand
     {
-        public class  Request : IRequest<Result>
+        public class Request : IRequest<Result>
         {
             public required string Email { get; set; }
             public required string Password { get; set; }
