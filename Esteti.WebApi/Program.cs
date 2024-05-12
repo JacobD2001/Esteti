@@ -54,7 +54,25 @@ namespace Esteti.WebApi
 
             builder.Services.AddApplicationServices();
 
+            builder.Services.AddSwaggerGen(o =>
+            {
+                o.CustomSchemaIds(x =>
+                {
+                    var name = x.FullName;
+                    if (name != null)
+                        name = name.Replace("+", "_"); //swagger bug for .net fix
+
+                    return name;
+                });
+            });
+
             var app = builder.Build();
+
+            if(app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             app.UseExceptionResultMiddleware();
 
