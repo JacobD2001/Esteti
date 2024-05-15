@@ -5,6 +5,7 @@ using Serilog;
 using Esteti.Application;
 using Esteti.Infrastructure.Auth;
 using Esteti.WebApi.Application.Auth;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Esteti.WebApi
 {
@@ -42,7 +43,15 @@ namespace Esteti.WebApi
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddDatabaseCache();
             builder.Services.AddSqlDatabase(builder.Configuration.GetConnectionString("MainDbSql")!);
-            builder.Services.AddControllers();
+
+            builder.Services.AddControllersWithViews(options =>
+            {
+                if(!builder.Environment.IsDevelopment())
+                {
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                }
+            });
+
             builder.Services.AddJwtAuth(builder.Configuration);
             builder.Services.AddJwtAuthenticationDataProvider(builder.Configuration);
             builder.Services.AddPasswordManager();
@@ -65,6 +74,11 @@ namespace Esteti.WebApi
 
                     return name;
                 });
+            });
+
+            builder.Services.AddAntiforgery(o =>
+            {
+                o.HeaderName = "X-CSRF-TOKEN";
             });
 
             builder.Services.AddCors();

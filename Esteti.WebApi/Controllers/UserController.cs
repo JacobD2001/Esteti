@@ -4,6 +4,7 @@ using Esteti.Infrastructure.Auth;
 using Esteti.WebApi.Application.Auth;
 using Esteti.WebApi.Application.Response;
 using MediatR;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,16 +18,20 @@ namespace Esteti.WebApi.Controllers
     {
         private readonly JwtManager _jwtManager;
         private readonly CookieSettings? _cookieSettings;
+        private readonly IAntiforgery _antiforgery;
         public UserController(ILogger<UserController> logger,
             IOptions<CookieSettings> cookieSettings,
             JwtManager jwtManager,
+            IAntiforgery antiforgery,
             IMediator mediator) : base(logger, mediator)
         {
             _jwtManager = jwtManager;
             _cookieSettings = cookieSettings != null ? cookieSettings.Value : null;
+            _antiforgery = antiforgery;
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task <ActionResult> CreateUserWithAccount([FromBody] CreateUserWithAccountCommand.Request model)
         {
             var createAccountResult = await _mediator.Send(model);
@@ -57,6 +62,13 @@ namespace Esteti.WebApi.Controllers
         {
             var loggedInUserResult = await _mediator.Send(new LoggedInUserQuery.Request() { });
             return Ok(loggedInUserResult);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> AntiforgeryToken()
+        {
+            var tokens = _antiforgery.GetAndStoreTokens(HttpContext);
+            return Ok(tokens.RequestToken);
         }
 
         private void SetTokenCookie(string token)
