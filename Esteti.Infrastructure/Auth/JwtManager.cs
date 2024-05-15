@@ -56,35 +56,88 @@ namespace Esteti.Infrastructure.Auth
             return GenerateTokenWithClaims(claims);
         }
 
-        public bool ValidateToken(string token)
-        {
-            if(string.IsNullOrWhiteSpace(token))
-                return false;
+        //TODO: Debbuging method - to remove
+        //public bool ValidateToken(string token)
+        //{
+        //    if (string.IsNullOrWhiteSpace(token))
+        //        return false;
 
-            var mySecurityKey = GetSecurityKey();
+        //    var mySecurityKey = GetSecurityKey();
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+        //    var tokenHandler = new JwtSecurityTokenHandler();
 
-            try
-            {
-                tokenHandler.ValidateToken(token, new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = mySecurityKey,
-                    ValidateIssuer = true,
-                    ValidIssuer = _jwtOptions.Issuer,
-                    ValidateAudience = true, //TODO: Here error with audience
-                    ValidAudience = _jwtOptions.Audience,
-                    ValidateLifetime = true,
-                }, out SecurityToken validatedToken);
-            }
-            catch
-            {
-                return false;
-            }
+        //    // Debugging: print the claims before validating the token
+        //    var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
+        //    if (jwtToken != null)
+        //    {
+        //        foreach (var claim in jwtToken.Claims)
+        //        {
+        //            Console.WriteLine($"Claim Type: {claim.Type}, Claim Value: {claim.Value}");
+        //        }
+        //    }
 
-            return true;
-        }
+        //    try
+        //    {
+        //        var audience = _jwtOptions.Audience;
+
+        //        // Debugging statement
+        //        Console.WriteLine($"Validating token with expected audience: {audience}");
+
+        //        tokenHandler.ValidateToken(token, new TokenValidationParameters
+        //        {
+        //            ValidateIssuerSigningKey = true,
+        //            IssuerSigningKey = mySecurityKey,
+        //            ValidateIssuer = true,
+        //            ValidIssuer = _jwtOptions.Issuer,
+        //            ValidateAudience = true, //TODO: Here error with audience
+        //            ValidAudience = _jwtOptions.Audience,
+        //            ValidateLifetime = true,
+        //        }, out SecurityToken validatedToken);
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+
+        //    return true;
+        //}
+
+        //TODO: Here error with audience
+
+        //public bool ValidateToken(string token)
+        //{
+        //    if(string.IsNullOrWhiteSpace(token))
+        //        return false;
+
+        //    var mySecurityKey = GetSecurityKey();
+
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+
+        //    try
+        //    {
+        //        var audience = _jwtOptions.Audience;
+
+        //        // Debugging statement
+        //        Console.WriteLine($"Validating token with expected audience: {audience}");
+
+        //        tokenHandler.ValidateToken(token, new TokenValidationParameters
+        //        {
+        //            ValidateIssuerSigningKey = true,
+        //            IssuerSigningKey = mySecurityKey,
+        //            ValidateIssuer = true,
+        //            ValidIssuer = _jwtOptions.Issuer,
+        //            ValidateAudience = true, 
+        //            ValidAudience = _jwtOptions.Audience,
+        //            ValidateLifetime = true,
+        //        }, out SecurityToken validatedToken);
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+
+        //    return true;
+        //}
 
         public string? GetClaim(string token, string claimType)
         {

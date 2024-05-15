@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Esteti.Infrastructure.Auth
 {
-    public static class AuthConfiguration
+    public static class JwtAuthConfiguration
     {
         public static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
         {
