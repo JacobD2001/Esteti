@@ -6,6 +6,7 @@ using Esteti.Application;
 using Esteti.Infrastructure.Auth;
 using Esteti.WebApi.Application.Auth;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace Esteti.WebApi
 {
@@ -50,6 +51,10 @@ namespace Esteti.WebApi
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 }
+            })
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
             builder.Services.AddJwtAuth(builder.Configuration);
