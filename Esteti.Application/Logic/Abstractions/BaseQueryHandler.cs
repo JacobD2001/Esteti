@@ -10,12 +10,12 @@ namespace Esteti.Application.Logic.Abstractions
     public abstract class BaseQueryHandler
     {
         protected readonly ICurrentAccountProvider _currentAccountProvider;
-        protected readonly IAuthenticationDataProvider _authenticationDataProvider;
+        protected readonly IApplicationDbContext _applicationDbContext;
 
-        protected BaseQueryHandler(ICurrentAccountProvider currentAccountProvider, IAuthenticationDataProvider authenticationDataProvider)
+        public BaseQueryHandler(ICurrentAccountProvider currentAccountProvider, IApplicationDbContext applicationDbContext)
         {
             _currentAccountProvider = currentAccountProvider;
-            _authenticationDataProvider = authenticationDataProvider;
+            _applicationDbContext = applicationDbContext;
         }
 
     }

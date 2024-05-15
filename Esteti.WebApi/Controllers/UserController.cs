@@ -27,7 +27,7 @@ namespace Esteti.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> CreateUserWithAccount([FromBody] CreateUserWithAccountCommand.Request model)
+        public async Task <ActionResult> CreateUserWithAccount([FromBody] CreateUserWithAccountCommand.Request model)
         {
             var createAccountResult = await _mediator.Send(model);
             var token = _jwtManager.GenerateUserToken(createAccountResult.UserId);
@@ -36,7 +36,7 @@ namespace Esteti.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginCommand.Request model)
+        public async Task<ActionResult> Login([FromBody] LoginCommand.Request model)
         {
             var loginResult = await _mediator.Send(model);
             var token = _jwtManager.GenerateUserToken(loginResult.UserId);
@@ -45,11 +45,18 @@ namespace Esteti.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Logout()
+        public async Task<ActionResult> Logout()
         {
             var logoutResult = await _mediator.Send(new LogoutCommand.Request());
             DeleteTokenCookie();
             return Ok(logoutResult);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetLoggedInUser()
+        {
+            var loggedInUserResult = await _mediator.Send(new LoggedInUserQuery.Request() { });
+            return Ok(loggedInUserResult);
         }
 
         private void SetTokenCookie(string token)

@@ -73,7 +73,7 @@ namespace Esteti.Infrastructure.Auth
                     IssuerSigningKey = mySecurityKey,
                     ValidateIssuer = true,
                     ValidIssuer = _jwtOptions.Issuer,
-                    ValidateAudience = true,
+                    ValidateAudience = true, //TODO: Here error with audience
                     ValidAudience = _jwtOptions.Audience,
                     ValidateLifetime = true,
                 }, out SecurityToken validatedToken);
