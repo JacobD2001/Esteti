@@ -1,5 +1,6 @@
 ﻿using Esteti.Application.Interfaces;
 using Esteti.Application.Logic.Abstractions;
+using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,15 @@ namespace Esteti.Application.Logic.User
                     UserId = user.Id
                 };
 
+            }
+        }
+
+        public class Validator : AbstractValidator<Request>
+        {
+            public Validator()
+            {
+                RuleFor(x => x.Email).NotEmpty().EmailAddress().MaximumLength(100);
+                RuleFor(x => x.Password).NotEmpty().MinimumLength(6).MaximumLength(20);
             }
         }
     }

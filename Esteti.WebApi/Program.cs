@@ -53,6 +53,7 @@ namespace Esteti.WebApi
             });
 
             builder.Services.AddApplicationServices();
+            builder.Services.AddValidators();
 
             builder.Services.AddSwaggerGen(o =>
             {

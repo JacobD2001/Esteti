@@ -1,5 +1,9 @@
 ﻿using Esteti.Application.Interfaces;
+using Esteti.Application.Logic.Abstractions;
 using Esteti.Application.Services;
+using Esteti.Application.Validators;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +19,13 @@ namespace Esteti.Application
         {
             services.AddScoped<ICurrentAccountProvider, CurrentAccountProvider>();
             //services.AddScoped<IAuthenticationDataProvider, AuthenticationDataProvider>();
+            return services;
+        }
+
+        public static IServiceCollection AddValidators(this IServiceCollection services)
+        {
+            services.AddValidatorsFromAssemblyContaining(typeof(BaseQueryHandler));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             return services;
         }
     }
